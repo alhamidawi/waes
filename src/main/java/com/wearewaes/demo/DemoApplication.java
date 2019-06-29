@@ -1,13 +1,23 @@
 package com.wearewaes.demo;
 
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.Banner;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+@Slf4j
 @SpringBootApplication
-public class DemoApplication {
+public class DemoApplication implements CommandLineRunner {
 
     public static void main(String[] args) {
-        SpringApplication.run(DemoApplication.class, args);
+        SpringApplication app = new SpringApplication(DemoApplication.class);
+        app.setBannerMode(Banner.Mode.OFF);
+        app.run(args);
     }
 
+    @Override
+    public void run(String... args) throws Exception {
+        log.info("REST API version: 0.0.1-SNAPSHOT");
+    }
 }
