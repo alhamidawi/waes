@@ -6,6 +6,7 @@ import com.wearewaes.demo.dto.ResponseDto;
 import com.wearewaes.demo.enumeration.Side;
 import com.wearewaes.demo.exception.BadRequestException;
 import com.wearewaes.demo.exception.ExceptionHandlerAdvice;
+import com.wearewaes.demo.exception.NotFoundException;
 import com.wearewaes.demo.service.DifferenceService;
 import org.junit.Before;
 import org.junit.Test;
@@ -139,6 +140,17 @@ public class DifferenceControllerTest {
 
     @Test
     public void getDifferenceNotFound() throws Exception {
+        ResponseDto result = new ResponseDto();
+        result.setIsContentEqual(true);
+        when(differenceService.getDifference(anyLong())).thenThrow(new NotFoundException("Ups something went wrong"));
+
+        mockMvc.perform(get("/v1/diff/{id}", "1")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
+    public void getDifferenceBadRequest() throws Exception {
         ResponseDto result = new ResponseDto();
         result.setIsContentEqual(true);
         when(differenceService.getDifference(anyLong())).thenThrow(new BadRequestException("Ups something went wrong"));
