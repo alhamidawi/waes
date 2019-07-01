@@ -27,7 +27,7 @@ public class DifferenceController {
     @PostMapping("/{id}/left")
     public ResponseEntity addLeft(@PathVariable("id") Long id, @Valid  @RequestBody RequestDto requestBody, BindingResult bindingResult){
         InvalidInputExceptionExtractor.extractAndThrow(bindingResult);
-        differenceService.add(id, requestBody, Side.LEFT);
+        differenceService.add(id, requestBody.getData(), Side.LEFT);
         return ResponseEntity.ok().build();
     }
 
@@ -35,7 +35,7 @@ public class DifferenceController {
     @PostMapping("/{id}/right")
     public ResponseEntity addRight(@PathVariable("id") Long id, @Valid  @RequestBody RequestDto requestBody, BindingResult bindingResult){
         InvalidInputExceptionExtractor.extractAndThrow(bindingResult);
-        differenceService.add(id, requestBody, Side.RIGHT);
+        differenceService.add(id, requestBody.getData(), Side.RIGHT);
         return ResponseEntity.ok().build();
     }
 
