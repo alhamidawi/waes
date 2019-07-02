@@ -9,7 +9,7 @@ import java.sql.Timestamp;
 @Getter
 @AllArgsConstructor
 @ToString
-public class BaseErrorDto {
+class BaseErrorDto {
     private final Timestamp timestamp;
     private final int status;
     private final String error;

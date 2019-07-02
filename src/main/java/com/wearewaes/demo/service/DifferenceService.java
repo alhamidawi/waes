@@ -3,6 +3,11 @@ package com.wearewaes.demo.service;
 import com.wearewaes.demo.dto.ResponseDto;
 import com.wearewaes.demo.enumeration.Side;
 
+/**
+ * Service which contain main login for this assigment.
+ *
+ * @author Hani Al-Hamidawi
+ */
 public interface DifferenceService {
 
     /**
@@ -18,7 +23,11 @@ public interface DifferenceService {
      * Get the difference between two side.
      *
      * @param id diff id
+     *
      * @return {@link ResponseDto} result
+     *
+     * @throws {@link com.wearewaes.demo.exception.NotFoundException} if there is no data with given id
+     * @throws {@link com.wearewaes.demo.exception.BadRequestException} if there is data but without left or right side
      */
     ResponseDto getDifference(Long id);
 }

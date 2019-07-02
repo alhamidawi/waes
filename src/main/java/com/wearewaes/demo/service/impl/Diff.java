@@ -1,7 +1,7 @@
 package com.wearewaes.demo.service.impl;
 
 /**
- * Helper class which is used to calculate difference between two arrays.
+ * Core class which is used to calculate difference between two arrays.
  */
 class Diff {
 

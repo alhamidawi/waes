@@ -5,6 +5,9 @@ import org.apache.commons.codec.binary.Base64;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
+/**
+ *
+ */
 public class Base64Validator implements ConstraintValidator<Base64Constraint, String> {
 
 

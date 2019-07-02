@@ -12,6 +12,11 @@ import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
+/**
+ * Difference service concrete implementation.
+ *
+ * @author Hani Al-Hamidawi
+ */
 @Service
 @Slf4j
 public class DifferenceServiceImpl implements DifferenceService {
@@ -24,15 +29,21 @@ public class DifferenceServiceImpl implements DifferenceService {
 
     @Override
     public void add(Long id, String input, Side side) {
+        log.info("Adding base64 encoded binary data: id -> {} and side -> {}", id, side);
+        //check map if key exist and return that, otherwise create new Data object
         Data data = getData(id);
+
+        //get byte array from decoded input
         byte[] decodedBytes = decodeString(input);
 
+        //pick the side
         if (Side.LEFT.equals(side)) {
             data.setLeft(decodedBytes);
         } else {
             data.setRight(decodedBytes);
         }
 
+        //if map doesn't contain key add it
         if (!storage.containsKey(id)) {
             storage.put(id, data);
         }
@@ -71,16 +82,20 @@ public class DifferenceServiceImpl implements DifferenceService {
 
     private ResponseDto createResponse(Diff diff) {
         ResponseDto result = new ResponseDto();
+
+        //if equal return that
         if (diff.isEqual()) {
             result.setIsContentEqual(true);
             return result;
         }
 
+        //if size is not equal return that
         if (!diff.isSizeEqual()) {
             result.setIsSizeEqual(false);
             return result;
         }
 
+        //otherwise return offsets + length
         result.setOffset(diff.getOffset());
         result.setLength(diff.getDiffSize());
         return result;
@@ -91,7 +106,6 @@ public class DifferenceServiceImpl implements DifferenceService {
                 && data.getRight() != null && data.getRight().length != 0;
 
     }
-
 
 
 }

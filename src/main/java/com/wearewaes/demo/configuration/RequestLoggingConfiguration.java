@@ -4,6 +4,13 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.filter.CommonsRequestLoggingFilter;
 
+
+/**
+ * Configuration class for {@link CommonsRequestLoggingFilter}, filter that writes the request URI
+ * (and optionally the query string) to the logs.
+ *
+ * @author Hani Al-Hamidawi
+ */
 @Configuration
 public class RequestLoggingConfiguration {
 
